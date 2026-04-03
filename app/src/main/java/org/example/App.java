@@ -5,15 +5,18 @@ import java.util.Scanner;
 public class App {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
+    Scoreboard scoreboard = new Scoreboard();
     boolean playAgain = true;
+    char nextStarter = 'X';
 
     System.out.println("Welcome to Tic-Tac-Toe game!");
 
     while (playAgain) {
-      TicTacToe game = new TicTacToe();
+      TicTacToe game = new TicTacToe(nextStarter);
       while (!game.isGameOver()) {
         game.printBoard();
-        System.out.print("\nPlease select your move? ");
+        System.out.print("\nIt is Player " + game.getCurrentPlayer() + "'s turn.");
+        System.out.print("\nPlease select your move (1-9): ");
         String input = scanner.nextLine().trim();
 
         if (!game.makeMove(input)) {
@@ -22,11 +25,17 @@ public class App {
       }
 
       game.printBoard();
-      if (game.getWinner() != 'D') {
-        System.out.println("\nPlayer " + game.getWinner() + " wins!");
+      char winner = game.getWinner();
+      if (winner != 'D') {
+        System.out.println("\nPlayer " + winner + " wins!");
+        nextStarter = (winner == 'X') ? 'O' : 'X';
       } else {
-        System.out.println("\ndraw!");
+        System.out.println("\nIt's a draw!");
+        // On a draw, nextStarter remains the same as the previous game's starter
       }
+
+      scoreboard.recordWin(winner);
+      scoreboard.displayStats();
 
       boolean validResponse = false;
       while (!validResponse) {
@@ -42,6 +51,8 @@ public class App {
         }
       }
     }
-    System.out.println("\nGoodbye!");
+
+    scoreboard.saveToFile();
+    System.out.println("\nGame log saved to scoreboard.txt. Goodbye!");
   }
 }

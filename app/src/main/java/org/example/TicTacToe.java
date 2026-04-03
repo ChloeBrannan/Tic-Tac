@@ -1,13 +1,13 @@
 package org.example;
 
 public class TicTacToe {
-    private char[] board;
+    private final char[] board; // 'final' added to fix the warning
     private char currentPlayer;
     private char winner;
 
-    public TicTacToe() {
+    public TicTacToe(char startingPlayer) {
         board = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-        currentPlayer = 'X';
+        currentPlayer = startingPlayer;
         winner = ' ';
     }
 
@@ -54,6 +54,7 @@ public class TicTacToe {
         return true;
     }
 
+    public char getCurrentPlayer() { return currentPlayer; }
     public boolean isGameOver() { return winner != ' '; }
     public char getWinner() { return winner; }
 }
