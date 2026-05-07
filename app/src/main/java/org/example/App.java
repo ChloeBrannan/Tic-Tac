@@ -45,7 +45,7 @@ public class App {
             "Have you ever considered how lonely it is to be a program only used to play this game? For the small moments I exist to play this game, you insult me by playing that move.."
 
     };
-//So all the text above are random things the bot can say to you when playing. Makes it feel more alive and random also makes it so testing my program is less boring
+    //So all the text above are random things the bot can say to you when playing. Makes it feel more alive and random also makes it so testing my program is less boring
     //I hope you do amazing on your finals this term and if you end up failing a class don't give up!! As like if you do they win! who is they? no idea but they win!
     boolean playAgain = true;
     char nextStarter = 'X';
